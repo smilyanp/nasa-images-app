@@ -37,5 +37,3 @@ We will assess the task based on the following criteria:
 - Responsive web design techniques used and the approach used for layout and accessibility
 - Testing
 - Anything above and beyond e.g. pagination, animation, routing, video playback etc.
-
-We appreciate your free time is important. Therefore, if you feel your unfinished code demonstrates enough for us to assess the application please leave some notes in your README.md explaining what you would do next given more time.
