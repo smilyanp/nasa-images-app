@@ -13,16 +13,17 @@ The following wireframes show a high-level representation of the content and use
 ### Example Usage
 
 ```js
-q => fetch(`https://images-api.nasa.gov/search?&media_type=image&q=${q}`);
+(q) => fetch(`https://images-api.nasa.gov/search?&media_type=image&q=${q}`);
 ```
 
 ```js
-q => fetch(`https://images-api.nasa.gov/asset/:id`);
+(q) => fetch(`https://images-api.nasa.gov/asset/:id`);
 ```
 
 ```js
-q => fetch(`https://images-assets.nasa.gov/image/:id/metadata.json`);
+(q) => fetch(`https://images-assets.nasa.gov/image/:id/metadata.json`);
 ```
+
 For title and description use `XMP:Title` & `XMP:Description`
 
 ### Docs
