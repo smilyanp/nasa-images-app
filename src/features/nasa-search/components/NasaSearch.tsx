@@ -1,36 +1,30 @@
-// import { useQueryClient, useQuery, useMutation } from "react-query";
 import { useNasaSearch } from "../api";
+import Loading from "../../common/components/Loading";
+import ResponseError from "../../common/components/ResponseError";
+import NasaSearchForm from "./NasaSearchForm";
+import NasaSearchResults from "./NasaSearchResults";
 
 const NasaSearch = () => {
   // TODO: Implement pagination / infinite scrolling
-  // TODO: Pass type / query params to request
-  const { data, isLoading } = useNasaSearch();
-
-  // TODO: Create the correct types
-  const renderImages = (images: any) => {
-    return images.collection.items.map((image: any) => (
-      // TODO: Better styling
-      <li style={{ display: "inline-block" }}>
-        <img
-          key={image.data[0].description}
-          src={image.links[0].href}
-          alt={image.data[0].title}
-        />
-      </li>
-    ));
-  };
+  const {
+    data = { collection: { items: [] } },
+    isLoading,
+    isError,
+    error,
+  } = useNasaSearch({ query: "test" });
 
   if (isLoading) {
-    // TODO: Implement loading component
-    return <div>Loading...</div>;
+    return <Loading />;
   }
-
-  // TODO: Implement error component
+  if (isError) {
+    return <ResponseError error={error} />;
+  }
 
   return (
     <div>
-      <h1>NasaSearch</h1>
-      <ul>{renderImages(data)}</ul>
+      <h1>NASA Search</h1>
+      <NasaSearchForm />
+      <NasaSearchResults images={data.collection.items} />
     </div>
   );
 };
