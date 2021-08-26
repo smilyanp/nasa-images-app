@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import Image from "../../common/components/Image";
 import Loading from "../../common/components/Loading";
 import { useNasaAssetDetails, useNasaImageMetadata } from "../api";
 import { NasaAssetDetailLinkType, NasaAssetParams } from "../types";
@@ -22,15 +23,17 @@ const NasaViewAsset = () => {
     return <Loading />;
   }
 
-  // TODO: Refactor NasaImage component to be used here as well
   // TODO: Style the page better
   // TODO: Handle errors
   return (
     <div>
-      NasaViewAsset with param id = {id}
       <h1>{metadata?.["XMP:Title"]}</h1>
       <p>{metadata?.["XMP:Description"]}</p>
-      <img alt="test" src={getMediumAssetUrl(assetDetails?.collection.items)} />
+      <p>ID: {id}</p>
+      <Image
+        alt={metadata?.["XMP:Description"] || ""}
+        src={getMediumAssetUrl(assetDetails?.collection.items)}
+      />
     </div>
   );
 };

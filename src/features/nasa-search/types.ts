@@ -18,10 +18,6 @@ export type NasaSearchResultsMetadataType = {
   total_hits: number;
 };
 
-export type NasaImageProps = {
-  image: NasaImageType;
-};
-
 export type NasaImageLinkType = {
   href: string;
   rel: string;
