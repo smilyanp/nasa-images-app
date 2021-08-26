@@ -2,10 +2,12 @@ export interface UseNasaSearchProps {
   mediaType?: "image" | "audio";
   query: string;
 }
-
+export type NasaSearchResultsProps = {
+  images: NasaImageType[];
+};
 export interface NasaSearchResults {
   collection: {
-    href: "";
+    href: string;
     items: NasaImageType[];
     links: NasaSearchResultsPaginationLink[];
     metadata: NasaSearchResultsMetadataType;

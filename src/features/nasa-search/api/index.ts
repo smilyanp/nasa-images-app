@@ -12,7 +12,7 @@ export const useNasaSearch = ({
       try {
         return await axios
           .get(
-            `${process.env.REACT_APP_API_BASE_URL}/search?media_type=${mediaType}&q=${query}`
+            `${process.env.REACT_APP_IMAGES_API_BASE_URL}/search?media_type=${mediaType}&q=${query}`
           )
           .then((response) => response.data);
       } catch (error) {
