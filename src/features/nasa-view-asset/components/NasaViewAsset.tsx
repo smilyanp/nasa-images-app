@@ -23,17 +23,18 @@ const NasaViewAsset = () => {
     return <Loading />;
   }
 
-  // TODO: Style the page better
   // TODO: Handle errors
   return (
-    <div>
-      <h1>{metadata?.["XMP:Title"]}</h1>
+    <div className="text-center pr-20 pl-20 pt-10">
+      <h1 className="block text-3xl mb-5">{metadata?.["XMP:Title"]}</h1>
       <p>{metadata?.["XMP:Description"]}</p>
-      <p>ID: {id}</p>
-      <Image
-        alt={metadata?.["XMP:Description"] || ""}
-        src={getMediumAssetUrl(assetDetails?.collection.items)}
-      />
+      <div className="border-2 border-black m-14 mt-8">
+        <Image
+          className="w-full h-screen p-6"
+          alt={metadata?.["XMP:Description"] || ""}
+          src={getMediumAssetUrl(assetDetails?.collection.items)}
+        />
+      </div>
     </div>
   );
 };
