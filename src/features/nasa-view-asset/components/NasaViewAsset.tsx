@@ -61,7 +61,7 @@ const NasaViewAsset = () => {
     return (
       imageUrl && (
         <Image
-          className="w-full h-auto p-6"
+          className="w-full h-auto sm:p-0 md:p-6"
           alt={metadata?.["XMP:Description"] || ""}
           src={imageUrl}
         />
@@ -71,8 +71,9 @@ const NasaViewAsset = () => {
 
   return (
     <Page className="text-center p-20">
+      {/* TODO: Add back button to return to the search page */}
       <div>{renderMetadata()}</div>
-      <div className="m-14 mt-8">{renderImage()}</div>
+      <div className="sm:m-0 md:m-14 mt-8">{renderImage()}</div>
     </Page>
   );
 };

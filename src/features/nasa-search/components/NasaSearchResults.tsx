@@ -15,6 +15,10 @@ const NasaSearchResults = ({ images }: NasaSearchResultsProps) => {
       )),
     [images]
   );
-  return <ul className="grid grid-cols-3 gap-4">{renderImages()}</ul>;
+  return (
+    <ul className="grid gap-4 sm:grid-cols-1 md:grid-cols-3">
+      {renderImages()}
+    </ul>
+  );
 };
 export default NasaSearchResults;
