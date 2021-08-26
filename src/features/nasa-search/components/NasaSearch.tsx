@@ -9,6 +9,7 @@ import NasaSearchResults from "./NasaSearchResults";
 
 const NasaSearch = () => {
   // TODO: Implement pagination / infinite scrolling
+  // TODO: Retain search query when moving between the pages
   const [query, setQuery] = useState("");
   const debouncedQuery = useDebounce(query, 500);
   const {
