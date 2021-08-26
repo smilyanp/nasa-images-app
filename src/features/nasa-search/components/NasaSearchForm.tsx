@@ -20,7 +20,7 @@ const NasaSearchForm = ({ onSubmit }: NasaSearchFormProps) => {
           <p className="sr-only">Search for images</p>
           <div className="bg-white flex items-end rounded-full shadow-xl">
             <input
-              className="rounded-l-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
+              className="rounded-full w-full py-4 px-6 text-gray-700 leading-tight focus:outline-none"
               type="text"
               placeholder="Search for images"
               onChange={handleChange}
