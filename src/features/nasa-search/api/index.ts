@@ -4,10 +4,10 @@ import { NasaSearchResults, UseNasaSearchProps } from "../types";
 
 export const useNasaSearch = ({
   mediaType = "image",
-  query = "",
+  query,
 }: UseNasaSearchProps) =>
   useQuery<NasaSearchResults, AxiosError>({
-    queryKey: "getNasaSearch",
+    queryKey: ["getNasaSearch", query],
     queryFn: async () => {
       try {
         return await axios

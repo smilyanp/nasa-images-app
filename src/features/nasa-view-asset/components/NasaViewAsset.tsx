@@ -1,11 +1,22 @@
 import { useParams } from "react-router-dom";
+import Page from "../../common/components/Page";
 import Image from "../../common/components/Image";
 import Loading from "../../common/components/Loading";
+import ResponseError from "../../common/components/ResponseError";
 import { useNasaAssetDetails, useNasaImageMetadata } from "../api";
 import { NasaAssetDetailLinkType, NasaAssetParams } from "../types";
 
-const getMediumAssetUrl = (assetUrls: NasaAssetDetailLinkType[]) =>
-  assetUrls.filter((asset) => asset.href.includes("~medium"))[0].href;
+const getMediumAssetUrl = (assetUrls: NasaAssetDetailLinkType[]) => {
+  const mediumUrl = assetUrls.filter((asset) =>
+    asset.href.includes("~medium")
+  )[0].href;
+  if (mediumUrl) {
+    return mediumUrl;
+  }
+  // If medium size image is not available
+  // get the largest available one
+  return assetUrls[assetUrls.length - 1].href;
+};
 
 const NasaViewAsset = () => {
   const { id } = useParams<NasaAssetParams>();
@@ -13,29 +24,56 @@ const NasaViewAsset = () => {
   const {
     data: assetDetails = { collection: { items: [] } },
     isLoading: isLoadingAssetDetails,
+    error: assetDetailsError,
   } = useNasaAssetDetails({ id });
 
-  const { data: metadata, isLoading: isLoadingMetadata } = useNasaImageMetadata(
-    { id }
-  );
+  const {
+    data: metadata,
+    isLoading: isLoadingMetadata,
+    error: metadataError,
+  } = useNasaImageMetadata({ id });
 
-  if (isLoadingAssetDetails && isLoadingMetadata) {
+  if (isLoadingAssetDetails || isLoadingMetadata) {
     return <Loading />;
   }
 
-  // TODO: Handle errors
-  return (
-    <div className="text-center pr-20 pl-20 pt-10">
-      <h1 className="block text-3xl mb-5">{metadata?.["XMP:Title"]}</h1>
-      <p>{metadata?.["XMP:Description"]}</p>
-      <div className="border-2 border-black m-14 mt-8">
+  const renderMetadata = () => {
+    if (metadataError) {
+      return <ResponseError error={metadataError} />;
+    }
+    return (
+      <>
+        {metadata?.["XMP:Title"] && (
+          <h1 className="block text-3xl mb-5">{metadata?.["XMP:Title"]}</h1>
+        )}
+        {metadata?.["XMP:Description"] && (
+          <p>{metadata?.["XMP:Description"]}</p>
+        )}
+      </>
+    );
+  };
+
+  const renderImage = () => {
+    const imageUrl = getMediumAssetUrl(assetDetails?.collection.items);
+    if (assetDetailsError) {
+      return <ResponseError error={assetDetailsError} />;
+    }
+    return (
+      imageUrl && (
         <Image
-          className="w-full h-screen p-6"
+          className="w-full h-auto p-6"
           alt={metadata?.["XMP:Description"] || ""}
-          src={getMediumAssetUrl(assetDetails?.collection.items)}
+          src={imageUrl}
         />
-      </div>
-    </div>
+      )
+    );
+  };
+
+  return (
+    <Page className="text-center p-20">
+      <div>{renderMetadata()}</div>
+      <div className="m-14 mt-8">{renderImage()}</div>
+    </Page>
   );
 };
 

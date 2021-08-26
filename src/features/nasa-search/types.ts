@@ -47,3 +47,7 @@ export type NasaSearchResultsPaginationLink = {
   href: string;
   rel: string;
 };
+
+export type NasaSearchFormProps = {
+  onSubmit: (value: string) => void;
+};

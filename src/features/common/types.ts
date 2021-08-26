@@ -3,3 +3,8 @@ export type ImageProps = {
   alt: string;
   [key: string]: string;
 };
+
+export type PageProps = {
+  [key: string]: string | JSX.Element | JSX.Element[];
+  children: JSX.Element | JSX.Element[];
+};
