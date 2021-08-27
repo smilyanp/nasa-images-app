@@ -43,6 +43,6 @@ To build for a Production environment `npm run build`
 
 ## Testing
 
-Tests are set up with "@testing-library/react" and a few utilities are available in the `./test/utils.tsx`.
+Tests are set up with "@testing-library/react" and a few utilities are available in the `./src/test/utils.tsx`.
 
-Example tests that also handle API calls are available in `./App.test.tsx`
+Example tests that also handle API calls are available in `./src/App.test.tsx`
