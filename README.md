@@ -1,8 +1,8 @@
-# Front End Task
+# NASA Images Search Application
 
-## Brief
+## Description
 
-We would like you to develop a web application that integrates with the [NASA Image and Video Library API](https://images.nasa.gov/). It should allow users to **search for assets** and then **select and view an asset**.
+This is a small application that integrates with the [NASA Image and Video Library API](https://images.nasa.gov/). It allows users to **search for assets** and then **select and view an asset**.
 
 The following wireframes show a high-level representation of the content and user flow:
 
@@ -24,26 +24,25 @@ The following wireframes show a high-level representation of the content and use
 (q) => fetch(`https://images-assets.nasa.gov/image/:id/metadata.json`);
 ```
 
-For title and description use `XMP:Title` & `XMP:Description`
+For title and description it uses uses the `XMP:Title` & `XMP:Description` properties from the metadata endpoint.
 
 ### Docs
 
 - https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf
 - https://images.nasa.gov (website)
 
-## Tools, libraries and frameworks
+## Installation
 
-Use whatever tools, libraries and frameworks you feel most comfortable with. You may want to consider using a front-end framework or library (e.g. React) and a simple build process (e.g. Webpack).
+Clone the repository and run `npm insall`
 
-We will run your app in an up-to-date version of Chrome, however, keep in mind it should be compatible with all modern browsers.
+## Running
 
-## Assessment
+To run the application for local development `npm start`
 
-We will assess the task based on the following criteria:
+To build for a Production environment `npm run build`
 
-- How clean, modular and extensible the code is
-- Suitability of tools, libraries and frameworks used (for the app and any build processes)
-- How it looks visually and the techniques used to style the application
-- Responsive web design techniques used and the approach used for layout and accessibility
-- Testing
-- Anything above and beyond e.g. pagination, animation, routing, video playback etc.
+## Testing
+
+Tests are set up with "@testing-library/react" and a few utilities are available in the `./test/utils.tsx`.
+
+Example tests that also handle API calls are available in `./App.test.tsx`
